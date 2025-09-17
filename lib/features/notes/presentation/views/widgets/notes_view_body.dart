@@ -9,11 +9,13 @@ class NotesViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-      child: Column(
-        children: [
-          SizedBox(height: MediaQuery.of(context).size.height * .05),
-          CustomAppBar(),
-          Expanded(child: NotesListView()),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: SizedBox(height: MediaQuery.of(context).size.height * .05),
+          ),
+          SliverToBoxAdapter(child: const CustomAppBar()),
+          const SliverToBoxAdapter(child: NotesListView()),
         ],
       ),
     );
