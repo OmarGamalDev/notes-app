@@ -72,6 +72,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   autovalidateMode = AutovalidateMode.always;
                   setState(() {});
                 }
+                
               },
               width: MediaQuery.of(context).size.width * .94,
               height: MediaQuery.of(context).size.height * .055,

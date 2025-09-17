@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:notes_app/core/constants/app_colors.dart';
 import 'package:notes_app/core/constants/app_styles.dart';
 import 'package:notes_app/features/notes/presentation/views/edit_note_view.dart';
 
@@ -39,7 +38,7 @@ class CustomNoteItem extends StatelessWidget {
                   onPressed: () {},
                   icon: Icon(
                     FontAwesomeIcons.trash,
-                    color: AppColors.blackColor,
+                    color: Colors.red,
                     size: 28,
                   ),
                 ),
