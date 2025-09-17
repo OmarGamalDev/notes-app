@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/core/constants/app_colors.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
     super.key,
     required this.hintText,
-    required this.onChanged,
+    this.onSaved,
     this.suffixIcon,
     required this.keyboardType,
     required this.contentPadding,
   });
   final String hintText;
-  final Function(String) onChanged;
+  final void Function(String?)? onSaved;
   final Widget? suffixIcon;
   final TextInputType keyboardType;
   final EdgeInsets contentPadding;
@@ -19,9 +19,15 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
-      child: TextField(
+      child: TextFormField(
         keyboardType: keyboardType,
-        onChanged: onChanged,
+        onSaved: onSaved,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'This field is required';
+          }
+          return null;
+        },
         style: TextStyle(color: AppColors.whiteColor, fontFamily: "Poppins"),
         decoration: InputDecoration(
           contentPadding: contentPadding,
@@ -32,6 +38,10 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: AppColors.whiteColor),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          border: OutlineInputBorder(
             borderSide: const BorderSide(color: AppColors.whiteColor),
             borderRadius: BorderRadius.circular(8),
           ),

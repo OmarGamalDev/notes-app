@@ -26,18 +26,16 @@ class EditNoteViewBody extends StatelessWidget {
           child: SizedBox(height: MediaQuery.of(context).size.height * .04),
         ),
         SliverToBoxAdapter(
-          child: CustomTextField(
+          child: CustomTextFormField(
             hintText: 'Title',
             contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-            onChanged: (value) {},
             keyboardType: TextInputType.text,
           ),
         ),
         SliverToBoxAdapter(
-          child: CustomTextField(
+          child: CustomTextFormField(
             hintText: 'Content',
             contentPadding: EdgeInsets.symmetric(vertical: 80, horizontal: 16),
-            onChanged: (value) {},
             keyboardType: TextInputType.text,
           ),
         ),
