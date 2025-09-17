@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/core/constants/routes.dart';
-import 'package:notes_app/features/notes/presentation/views/notes_view.dart';
+import 'package:notes_app/features/splash/presentation/views/splash_view.dart';
 
 void main() {
   runApp(const NotesApp());
@@ -19,7 +19,7 @@ class NotesApp extends StatelessWidget {
         fontFamily: 'Poppins',
       ),
       onGenerateRoute: onGenerateRoute,
-      initialRoute: NotesView.routeName,
+      initialRoute: SplashView.routeName,
     );
   }
 }
