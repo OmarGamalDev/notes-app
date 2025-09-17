@@ -7,8 +7,8 @@ class CustomSearchIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 46,
-      width: 46,
+      height: MediaQuery.of(context).size.height * .06,
+      width: MediaQuery.of(context).size.width * .12,
       decoration: BoxDecoration(
         color: AppColors.whiteColor.withValues(alpha: .05),
         borderRadius: BorderRadius.circular(16),
