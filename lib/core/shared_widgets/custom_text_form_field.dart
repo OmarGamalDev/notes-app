@@ -8,13 +8,13 @@ class CustomTextField extends StatelessWidget {
     required this.onChanged,
     this.suffixIcon,
     required this.keyboardType,
-    required this.contentPadding
+    required this.contentPadding,
   });
   final String hintText;
   final Function(String) onChanged;
   final Widget? suffixIcon;
   final TextInputType keyboardType;
-  final EdgeInsets contentPadding ;
+  final EdgeInsets contentPadding;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +22,7 @@ class CustomTextField extends StatelessWidget {
       child: TextField(
         keyboardType: keyboardType,
         onChanged: onChanged,
-        style: TextStyle(color: Colors.black, fontFamily: "Poppins"),
+        style: TextStyle(color: AppColors.whiteColor, fontFamily: "Poppins"),
         decoration: InputDecoration(
           contentPadding: contentPadding,
           hintText: hintText,
