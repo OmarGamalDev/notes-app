@@ -25,7 +25,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       children: [
         Center(
           child: Image.asset(
-            "assets/images/notes_logo.png",
+            "assets/images/notes_removebg.png",
             fit: BoxFit.cover,
             width: 320,
           ),
@@ -36,7 +36,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void executeNavigation() {
     Future.delayed(const Duration(seconds: 5), () {
-      if(!mounted) return;
+      if (!mounted) return;
       Navigator.pushReplacementNamed(context, NotesView.routeName);
     });
   }
