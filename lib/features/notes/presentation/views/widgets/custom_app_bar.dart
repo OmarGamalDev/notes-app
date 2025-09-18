@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/core/constants/app_colors.dart';
 import 'package:notes_app/core/constants/app_styles.dart';
-import 'package:notes_app/features/notes/presentation/cubit/theme_cubit.dart';
+import 'package:notes_app/core/theme/theme_cubit.dart';
 import 'package:notes_app/features/notes/presentation/views/widgets/custom_icon_button.dart';
 
 class CustomAppBar extends StatelessWidget {

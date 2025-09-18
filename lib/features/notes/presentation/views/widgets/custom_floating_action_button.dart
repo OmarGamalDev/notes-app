@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/core/constants/app_colors.dart';
-import 'package:notes_app/features/notes/presentation/cubit/theme_cubit.dart';
+import 'package:notes_app/core/theme/theme_cubit.dart';
 import 'package:notes_app/features/notes/presentation/views/widgets/add_note_bottom_sheet.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
@@ -27,6 +27,7 @@ class CustomFloatingActionButton extends StatelessWidget {
         shape: const CircleBorder(),
         onPressed: () {
           showModalBottomSheet(
+            isScrollControlled: true,
             context: context,
             builder: (context) {
               return const AddNoteBottomSheet();

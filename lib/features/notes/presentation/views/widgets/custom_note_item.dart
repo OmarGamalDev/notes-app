@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/core/constants/app_colors.dart' show AppColors;
 import 'package:notes_app/core/constants/app_styles.dart';
-import 'package:notes_app/features/notes/presentation/cubit/theme_cubit.dart';
+import 'package:notes_app/core/theme/theme_cubit.dart';
 import 'package:notes_app/features/notes/presentation/views/edit_note_view.dart';
 
 class CustomNoteItem extends StatelessWidget {
