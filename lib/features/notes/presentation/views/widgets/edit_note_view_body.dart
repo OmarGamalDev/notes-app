@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/core/shared_widgets/custom_text_form_field.dart';
+import 'package:notes_app/features/notes/data/models/note_model.dart';
+import 'package:notes_app/features/notes/presentation/cubit/read%20notes/notes_cubit.dart';
 import 'package:notes_app/features/notes/presentation/views/widgets/custom_app_bar.dart';
 
-class EditNoteViewBody extends StatelessWidget {
-  const EditNoteViewBody({super.key});
+class EditNoteViewBody extends StatefulWidget {
+  const EditNoteViewBody({super.key, required this.note});
+  final NoteModel note;
 
+  @override
+  State<EditNoteViewBody> createState() => _EditNoteViewBodyState();
+}
+
+class _EditNoteViewBodyState extends State<EditNoteViewBody> {
+  String? title, content;
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -18,7 +28,13 @@ class EditNoteViewBody extends StatelessWidget {
             child: CustomAppBar(
               text: 'Edit Note',
               icon: Icons.check,
-              onPressed: () {},
+              onPressed: () {
+                widget.note.title = title ?? widget.note.title;
+                widget.note.subTitle = content ?? widget.note.subTitle;
+                widget.note.save();
+                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                Navigator.pop(context);
+              },
             ),
           ),
         ),
@@ -27,16 +43,22 @@ class EditNoteViewBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: CustomTextFormField(
-            hintText: 'Title',
+            hintText: widget.note.title,
             contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             keyboardType: TextInputType.text,
+            onChanged: (value) {
+              title = value;
+            },
           ),
         ),
         SliverToBoxAdapter(
           child: CustomTextFormField(
-            hintText: 'Content',
+            hintText: widget.note.subTitle,
             contentPadding: EdgeInsets.symmetric(vertical: 80, horizontal: 16),
             keyboardType: TextInputType.text,
+            onChanged: (value) {
+              content = value;
+            },
           ),
         ),
       ],

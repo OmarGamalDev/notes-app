@@ -11,12 +11,14 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     required this.keyboardType,
     required this.contentPadding,
+    this.onChanged,
   });
   final String hintText;
   final void Function(String?)? onSaved;
   final Widget? suffixIcon;
   final TextInputType keyboardType;
   final EdgeInsets contentPadding;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,6 +26,7 @@ class CustomTextFormField extends StatelessWidget {
       child: TextFormField(
         keyboardType: keyboardType,
         onSaved: onSaved,
+        onChanged: onChanged,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'This field is required';

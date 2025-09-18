@@ -6,6 +6,7 @@ import 'package:notes_app/core/constants/app_styles.dart';
 import 'package:notes_app/core/shared_widgets/custom_button.dart';
 import 'package:notes_app/core/theme/theme_cubit.dart';
 import 'package:notes_app/features/notes/data/models/note_model.dart';
+import 'package:notes_app/features/notes/presentation/cubit/read%20notes/notes_cubit.dart';
 import 'package:notes_app/features/notes/presentation/views/edit_note_view.dart';
 
 class CustomNoteItem extends StatelessWidget {
@@ -15,7 +16,7 @@ class CustomNoteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, EditNoteView.routeName);
+        Navigator.pushNamed(context, EditNoteView.routeName, arguments: note);
       },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 12),
@@ -116,6 +117,7 @@ class CustomNoteItem extends StatelessWidget {
               onPressed: () {
                 note.delete();
                 Navigator.of(context).pop();
+                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
               },
             ),
             CustomButton(
