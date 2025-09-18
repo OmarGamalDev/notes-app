@@ -4,11 +4,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/core/constants/app_colors.dart' show AppColors;
 import 'package:notes_app/core/constants/app_styles.dart';
 import 'package:notes_app/core/theme/theme_cubit.dart';
+import 'package:notes_app/features/notes/data/models/note_model.dart';
 import 'package:notes_app/features/notes/presentation/views/edit_note_view.dart';
 
 class CustomNoteItem extends StatelessWidget {
-  const CustomNoteItem({super.key});
-
+  const CustomNoteItem({super.key, required this.note});
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,7 +20,7 @@ class CustomNoteItem extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 12),
         child: Container(
           decoration: BoxDecoration(
-            // color: Color(0xffffcc7b),
+            color: Color(note.color),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
@@ -28,7 +29,7 @@ class CustomNoteItem extends StatelessWidget {
               ListTile(
                 title: Padding(
                   padding: EdgeInsets.only(left: 8, top: 12),
-                  child: Text('Flutter Tips',
+                  child: Text(note.title,
                       style: AppStyles.boldBlackText.copyWith(
                         color:
                             context.watch<ThemeCubit>().state == ThemeMode.dark
@@ -39,7 +40,7 @@ class CustomNoteItem extends StatelessWidget {
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 20, left: 8),
                   child: Text(
-                    'Build Your Career with Flutter Developer',
+                    note.subTitle,
                     style: AppStyles.w600DarkGrayText.copyWith(
                       color: context.watch<ThemeCubit>().state == ThemeMode.dark
                           ? AppColors.whiteColorLight
@@ -59,7 +60,7 @@ class CustomNoteItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 8, top: 18, bottom: 12),
                 child: Text(
-                  'May 28, 2024',
+                  note.date,
                   style: AppStyles.w600DarkGrayText.copyWith(
                     color: context.watch<ThemeCubit>().state == ThemeMode.dark
                         ? AppColors.whiteColorLight

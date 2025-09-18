@@ -4,9 +4,9 @@ import 'package:notes_app/core/constants/app_colors.dart';
 import 'package:notes_app/core/constants/app_styles.dart';
 import 'package:notes_app/core/shared_widgets/custom_button.dart';
 import 'package:notes_app/core/shared_widgets/custom_text_form_field.dart';
+import 'package:notes_app/core/theme/theme_cubit.dart';
 import 'package:notes_app/features/notes/data/models/note_model.dart';
 import 'package:notes_app/features/notes/presentation/cubit/add%20notes/add_notes_cubit.dart';
-import 'package:notes_app/core/theme/theme_cubit.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
