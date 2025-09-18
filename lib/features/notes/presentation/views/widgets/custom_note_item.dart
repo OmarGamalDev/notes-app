@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/core/constants/app_colors.dart' show AppColors;
 import 'package:notes_app/core/constants/app_styles.dart';
+import 'package:notes_app/core/shared_widgets/custom_button.dart';
 import 'package:notes_app/core/theme/theme_cubit.dart';
 import 'package:notes_app/features/notes/data/models/note_model.dart';
 import 'package:notes_app/features/notes/presentation/views/edit_note_view.dart';
@@ -49,10 +50,11 @@ class CustomNoteItem extends StatelessWidget {
                   ),
                 ),
                 trailing: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
+                  onPressed: () {
+                    deleteShowDialog(context);
+                  },
+                  icon: const Icon(
                     FontAwesomeIcons.trash,
-                    // color: Colors.red,
                     size: 28,
                   ),
                 ),
@@ -72,6 +74,63 @@ class CustomNoteItem extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Future<dynamic> deleteShowDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: context.read<ThemeCubit>().state == ThemeMode.dark
+              ? AppColors.blackColor
+              : AppColors.whiteColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          title: Text(
+            'Delete Note',
+            style: AppStyles.boldBlackText.copyWith(
+              color: context.read<ThemeCubit>().state == ThemeMode.dark
+                  ? AppColors.whiteColor
+                  : AppColors.blackColor,
+            ),
+          ),
+          content: Text(
+            'Are you sure you want to delete this note?',
+            style: AppStyles.boldBlackText.copyWith(
+              fontSize: 18,
+              color: context.read<ThemeCubit>().state == ThemeMode.dark
+                  ? AppColors.whiteColor
+                  : AppColors.blackColor,
+            ),
+          ),
+          actionsAlignment: MainAxisAlignment.spaceEvenly,
+          actions: [
+            CustomButton(
+              height: 40,
+              width: 80,
+              style: AppStyles.boldBlackText.copyWith(color: Colors.white),
+              text: 'Yes',
+              backgroundColor: Colors.red,
+              onPressed: () {
+                note.delete();
+                Navigator.of(context).pop();
+              },
+            ),
+            CustomButton(
+              height: 40,
+              width: 80,
+              style: AppStyles.boldBlackText.copyWith(color: Colors.white),
+              text: 'No',
+              backgroundColor: Colors.grey,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

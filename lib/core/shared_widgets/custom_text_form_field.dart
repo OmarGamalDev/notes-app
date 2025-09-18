@@ -30,11 +30,9 @@ class CustomTextFormField extends StatelessWidget {
           }
           return null;
         },
-        style: TextStyle(color: AppColors.whiteColor, fontFamily: "Poppins"),
         decoration: InputDecoration(
           contentPadding: contentPadding,
           hintText: hintText,
-          // hintStyle: const TextStyle(color: AppColors.lightBlue),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: AppColors.lightBlue),
             borderRadius: BorderRadius.circular(8),
