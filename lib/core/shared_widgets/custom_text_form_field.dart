@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/core/constants/app_colors.dart';
+import 'package:notes_app/features/notes/presentation/cubit/theme_cubit.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -32,17 +34,23 @@ class CustomTextFormField extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: contentPadding,
           hintText: hintText,
-          hintStyle: const TextStyle(color: AppColors.lightBlue),
+          // hintStyle: const TextStyle(color: AppColors.lightBlue),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: AppColors.lightBlue),
             borderRadius: BorderRadius.circular(8),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: AppColors.whiteColor),
+            borderSide: BorderSide(
+                color: context.watch<ThemeCubit>().state == ThemeMode.dark
+                    ? AppColors.whiteColor
+                    : AppColors.blackColor),
             borderRadius: BorderRadius.circular(8),
           ),
           border: OutlineInputBorder(
-            borderSide: const BorderSide(color: AppColors.whiteColor),
+            borderSide: BorderSide(
+                color: context.watch<ThemeCubit>().state == ThemeMode.dark
+                    ? AppColors.whiteColor
+                    : AppColors.blackColor),
             borderRadius: BorderRadius.circular(8),
           ),
           suffixIcon: suffixIcon,

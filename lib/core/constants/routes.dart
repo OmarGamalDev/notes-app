@@ -14,7 +14,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const EditNoteView());
     default:
       return MaterialPageRoute(
-        builder: (_) => const Scaffold(),
+        builder: (_) => const NotesView(),
       );
   }
 }

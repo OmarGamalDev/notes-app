@@ -14,11 +14,12 @@ class NotesViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: SizedBox(height: MediaQuery.of(context).size.height * .05),
           ),
-          SliverToBoxAdapter(child:  CustomAppBar(
-            text: 'Notes',
-            icon: Icons.search,
-            onPressed: () {},
-          )),
+          SliverToBoxAdapter(
+              child: CustomAppBar(
+                text: 'Notes',
+                icon: Icons.search,
+                onPressed: () {},
+              )),
           const SliverToBoxAdapter(child: NotesListView()),
         ],
       ),

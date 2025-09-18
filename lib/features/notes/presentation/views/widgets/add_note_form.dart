@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/core/constants/app_colors.dart';
 import 'package:notes_app/core/constants/app_styles.dart';
 import 'package:notes_app/core/shared_widgets/custom_button.dart';
 import 'package:notes_app/core/shared_widgets/custom_text_form_field.dart';
+import 'package:notes_app/features/notes/data/models/note_model.dart';
+import 'package:notes_app/features/notes/presentation/cubit/add_notes_cubit.dart';
+import 'package:notes_app/features/notes/presentation/cubit/theme_cubit.dart';
+
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
     super.key,
@@ -23,7 +28,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
       autovalidateMode: autovalidateMode,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.lightDark,
           borderRadius: BorderRadius.circular(19),
         ),
         child: Column(
@@ -48,22 +52,39 @@ class _AddNoteFormState extends State<AddNoteForm> {
               keyboardType: TextInputType.text,
             ),
             SizedBox(height: MediaQuery.of(context).size.height * .12),
-            CustomButton(
-              text: 'Add',
-              backgroundColor: AppColors.lightBlue,
-              style: AppStyles.boldBlackText,
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  Navigator.of(context).pop({'title': title, 'subTitle': subTitle});
-                } else {
-                  autovalidateMode = AutovalidateMode.always;
-                  setState(() {});
-                }
-                
+            BlocBuilder<AddNotesCubit, AddNotesState>(
+              builder: (context, state) {
+                return CustomButton(
+                  isLoading: state is AddNotesLoading ? true : false,
+                  text: 'Add',
+                  backgroundColor:
+                      context.read<ThemeCubit>().state == ThemeMode.dark
+                          ? AppColors.whiteColor
+                          : AppColors.blackColor,
+                  style: AppStyles.boldBlackText.copyWith(
+                      color: context.read<ThemeCubit>().state == ThemeMode.dark
+                          ? AppColors.blackColor
+                          : AppColors.whiteColor),
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      var noteModel = NoteModel(
+                          title: title!,
+                          subTitle: subTitle!,
+                          date: DateTime.now().toString(),
+                          color: Colors.blue.value);
+                      BlocProvider.of<AddNotesCubit>(context, listen: false)
+                          .addNote(noteModel);
+                      Navigator.of(context).pop();
+                    } else {
+                      autovalidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                  width: MediaQuery.of(context).size.width * .94,
+                  height: MediaQuery.of(context).size.height * .055,
+                );
               },
-              width: MediaQuery.of(context).size.width * .94,
-              height: MediaQuery.of(context).size.height * .055,
             ),
             SizedBox(height: MediaQuery.of(context).size.height * .12),
           ],

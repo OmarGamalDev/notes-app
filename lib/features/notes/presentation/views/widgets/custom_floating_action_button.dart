@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/core/constants/app_colors.dart';
+import 'package:notes_app/features/notes/presentation/cubit/theme_cubit.dart';
 import 'package:notes_app/features/notes/presentation/views/widgets/add_note_bottom_sheet.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
@@ -12,7 +14,9 @@ class CustomFloatingActionButton extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: AppColors.lightBlue.withValues(alpha: .4),
+            color: context.watch<ThemeCubit>().state == ThemeMode.dark
+                ? AppColors.whiteColor.withValues(alpha: .1)
+                : AppColors.blackColor.withValues(alpha: .1),
             blurRadius: 8,
             spreadRadius: 2,
             offset: const Offset(0, 3),
@@ -20,7 +24,6 @@ class CustomFloatingActionButton extends StatelessWidget {
         ],
       ),
       child: FloatingActionButton(
-        backgroundColor: AppColors.lightBlue,
         shape: const CircleBorder(),
         onPressed: () {
           showModalBottomSheet(
@@ -30,7 +33,10 @@ class CustomFloatingActionButton extends StatelessWidget {
             },
           );
         },
-        child: const Icon(Icons.add, size: 28, color: AppColors.blackColor),
+        child: const Icon(
+          Icons.add,
+          size: 28,
+        ),
       ),
     );
   }
