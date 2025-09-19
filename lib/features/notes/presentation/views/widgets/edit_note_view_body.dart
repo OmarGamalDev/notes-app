@@ -25,23 +25,26 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
         child: Column(
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * .05),
-            CustomAppBar(
-              text: 'Edit Note',
-              icon: Icons.check,
-              onPressed: () {
-                widget.note.title = title ?? widget.note.title;
-                widget.note.subTitle = content ?? widget.note.subTitle;
-                widget.note.save();
-                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-                Navigator.pop(context);
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomAppBar(
+                text: 'Edit Note',
+                icon: Icons.check,
+                onPressed: () {
+                  widget.note.title = title ?? widget.note.title;
+                  widget.note.subTitle = content ?? widget.note.subTitle;
+                  widget.note.save();
+                  BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                  Navigator.pop(context);
+                },
+              ),
             ),
             Column(
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * .04),
                 CustomTextFormField(
                   padding:
-                      EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+                      EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 8),
                   hintText: widget.note.title,
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
@@ -52,7 +55,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                 ),
                 CustomTextFormField(
                   padding:
-                      EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+                      EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 8),
                   hintText: widget.note.subTitle,
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 80, horizontal: 16),

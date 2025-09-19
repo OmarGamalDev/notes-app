@@ -84,7 +84,7 @@ class CustomNoteItem extends StatelessWidget {
       builder: (context) {
         return AlertDialog(
           backgroundColor: context.read<ThemeCubit>().state == ThemeMode.dark
-              ? AppColors.blackColor
+              ? Color(0xff313031)
               : AppColors.whiteColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),

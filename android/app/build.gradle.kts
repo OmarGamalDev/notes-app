@@ -38,9 +38,11 @@ android {
         }
     }
 }
+
 dependencies {
     implementation("androidx.appcompat:appcompat:1.4.0")
 }
+
 flutter {
     source = "../.."
 }

@@ -8,7 +8,7 @@ class AppColors {
   static const whiteColorLight = Color.fromARGB(228, 255, 255, 255);
   static const darkGray = Color.fromARGB(255, 117, 101, 101);
   static const List<Color> colors = [
-    Color(0xFF6C63FF),
+    Color.fromARGB(218, 107, 99, 255),
     Color(0xFFFF6584),
     Color(0xFF4CAF50),
     Color(0xFFFFB74D),
