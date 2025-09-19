@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/core/constants/app_colors.dart';
+import 'package:notes_app/core/theme/theme_cubit.dart';
 import 'package:notes_app/features/notes/presentation/cubit/add%20notes/add_notes_cubit.dart';
 
 class ColorItem extends StatelessWidget {
@@ -11,7 +13,9 @@ class ColorItem extends StatelessWidget {
     return isSelected
         ? CircleAvatar(
             radius: 40,
-            backgroundColor: Colors.white,
+            backgroundColor: context.read<ThemeCubit>().state == ThemeMode.dark
+                ? AppColors.whiteColor
+                : AppColors.blackColor,
             child: CircleAvatar(
               radius: 34,
               backgroundColor: color,
@@ -33,14 +37,6 @@ class ColorsListView extends StatefulWidget {
 
 class _ColorsListViewState extends State<ColorsListView> {
   int currentIndex = 0;
-  List<Color> colors = [
-    const Color(0xFF6C63FF),
-    const Color(0xFFFF6584),
-    const Color(0xFF4CAF50),
-    const Color(0xFFFFB74D),
-    const Color(0xFF00ACC1),
-    const Color(0xFFAB47BC),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +54,11 @@ class _ColorsListViewState extends State<ColorsListView> {
                   currentIndex = index;
                 });
                 BlocProvider.of<AddNotesCubit>(context).color =
-                    colors[currentIndex];
+                    AppColors.colors[currentIndex];
               },
               child: ColorItem(
                 isSelected: currentIndex == index,
-                color: colors[index],
+                color: AppColors.colors[index],
               ),
             ),
           );

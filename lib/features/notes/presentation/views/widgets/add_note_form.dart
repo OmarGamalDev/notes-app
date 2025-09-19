@@ -63,12 +63,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   text: 'Add',
                   backgroundColor:
                       context.read<ThemeCubit>().state == ThemeMode.dark
-                          ? AppColors.whiteColor
-                          : AppColors.blackColor,
+                          ? AppColors.blackColor
+                          : AppColors.whiteColor,
                   style: AppStyles.boldBlackText.copyWith(
                       color: context.read<ThemeCubit>().state == ThemeMode.dark
-                          ? AppColors.blackColor
-                          : AppColors.whiteColor),
+                          ? AppColors.whiteColor
+                          : AppColors.blackColor),
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();

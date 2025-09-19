@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/core/shared_widgets/custom_text_form_field.dart';
 import 'package:notes_app/features/notes/data/models/note_model.dart';
 import 'package:notes_app/features/notes/presentation/cubit/read%20notes/notes_cubit.dart';
-import 'package:notes_app/features/notes/presentation/views/widgets/colors_list_view.dart';
 import 'package:notes_app/features/notes/presentation/views/widgets/custom_app_bar.dart';
+import 'package:notes_app/features/notes/presentation/views/widgets/edit_notes_colors_list.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({super.key, required this.note});
@@ -16,17 +16,16 @@ class EditNoteViewBody extends StatefulWidget {
 
 class _EditNoteViewBodyState extends State<EditNoteViewBody> {
   String? title, content;
+
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: SizedBox(height: MediaQuery.of(context).size.height * .05),
-        ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: CustomAppBar(
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        child: Column(
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height * .05),
+            CustomAppBar(
               text: 'Edit Note',
               icon: Icons.check,
               onPressed: () {
@@ -37,38 +36,36 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                 Navigator.pop(context);
               },
             ),
-          ),
+            Column(
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height * .04),
+                CustomTextFormField(
+                  hintText: widget.note.title,
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                  keyboardType: TextInputType.text,
+                  onChanged: (value) {
+                    title = value;
+                  },
+                ),
+                CustomTextFormField(
+                  hintText: widget.note.subTitle,
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 80, horizontal: 16),
+                  keyboardType: TextInputType.text,
+                  onChanged: (value) {
+                    content = value;
+                  },
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * .02),
+                EditNotesColorsList(
+                  note: widget.note,
+                ),
+              ],
+            ),
+          ],
         ),
-        SliverToBoxAdapter(
-          child: SizedBox(height: MediaQuery.of(context).size.height * .04),
-        ),
-        SliverToBoxAdapter(
-          child: CustomTextFormField(
-            hintText: widget.note.title,
-            contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-            keyboardType: TextInputType.text,
-            onChanged: (value) {
-              title = value;
-            },
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: CustomTextFormField(
-            hintText: widget.note.subTitle,
-            contentPadding: EdgeInsets.symmetric(vertical: 80, horizontal: 16),
-            keyboardType: TextInputType.text,
-            onChanged: (value) {
-              content = value;
-            },
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: SizedBox(height: MediaQuery.of(context).size.height * .02),
-        ),
-        SliverToBoxAdapter(
-          child: ColorsListView(),
-        ),
-      ],
+      ),
     );
   }
 }

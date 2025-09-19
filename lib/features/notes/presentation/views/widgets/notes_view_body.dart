@@ -30,7 +30,8 @@ class _NotesViewBodyState extends State<NotesViewBody> {
               child: CustomAppBar(
             text: 'Notes',
             icon: Icons.search,
-            onPressed: () {},
+            onPressed: () {
+            },
           )),
           const SliverToBoxAdapter(child: NotesListView()),
         ],
