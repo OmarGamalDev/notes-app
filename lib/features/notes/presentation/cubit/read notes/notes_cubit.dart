@@ -11,5 +11,18 @@ class NotesCubit extends Cubit<NotesState> {
     var notesBox = Hive.box<NoteModel>('notes_box');
     emit(NotesFetchSuccess(notesBox.values.toList()));
   }
+  void searchNotes(String query) {
+    var notesBox = Hive.box<NoteModel>('notes_box');
+    if (query.isEmpty) {
+      emit(NotesFetchSuccess(notesBox.values.toList()));
+    } else {
+      var filteredNotes = notesBox.values
+          .where((note) =>
+              note.title.toLowerCase().contains(query.toLowerCase()) ||
+              note.subTitle.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+      emit(NotesFetchSuccess(filteredNotes));
+    }
+  }
 }
 

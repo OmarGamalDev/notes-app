@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/core/constants/app_colors.dart';
 import 'package:notes_app/core/constants/app_styles.dart';
+import 'package:notes_app/core/constants/show_error_message.dart';
+import 'package:notes_app/core/constants/show_success_message.dart';
 import 'package:notes_app/core/shared_widgets/custom_button.dart';
 import 'package:notes_app/core/shared_widgets/custom_text_form_field.dart';
 import 'package:notes_app/core/theme/theme_cubit.dart';
@@ -36,6 +38,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * .04),
             CustomTextFormField(
+              padding: EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
               hintText: 'Title',
               onSaved: (value) => title = value,
               contentPadding: EdgeInsets.symmetric(
@@ -45,6 +48,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
               keyboardType: TextInputType.text,
             ),
             CustomTextFormField(
+              padding: EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
               hintText: 'Content',
               onSaved: (value) => subTitle = value,
               contentPadding: EdgeInsets.symmetric(
@@ -83,9 +87,17 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       BlocProvider.of<AddNotesCubit>(context, listen: false)
                           .addNote(noteModel);
                       Navigator.of(context).pop();
+                      showsuccessmessage(
+                        context,
+                        message: 'Note added successfully',
+                      );
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
+                      showerrormessage(
+                        context,
+                        message: 'Please complete all required fields',
+                      );
                     }
                   },
                   width: MediaQuery.of(context).size.width * .94,

@@ -40,6 +40,8 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * .04),
                 CustomTextFormField(
+                  padding:
+                      EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
                   hintText: widget.note.title,
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
@@ -49,6 +51,8 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                   },
                 ),
                 CustomTextFormField(
+                  padding:
+                      EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
                   hintText: widget.note.subTitle,
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 80, horizontal: 16),

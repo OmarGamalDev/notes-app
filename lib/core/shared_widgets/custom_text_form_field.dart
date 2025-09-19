@@ -12,6 +12,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.keyboardType,
     required this.contentPadding,
     this.onChanged,
+    required this.padding,
   });
   final String hintText;
   final void Function(String?)? onSaved;
@@ -19,10 +20,11 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType keyboardType;
   final EdgeInsets contentPadding;
   final void Function(String)? onChanged;
+  final EdgeInsets padding;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
+      padding: padding,
       child: TextFormField(
         keyboardType: keyboardType,
         onSaved: onSaved,
