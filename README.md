@@ -19,6 +19,8 @@ A modern and functional notes application built with Flutter. It allows users to
   <img src="assets/screenshots/note_add_success_dark.png" alt="Note Added Successfully (Dark)" width="250"/>  
   <img src="assets/screenshots/note_add_failure_dark.png" alt="Note Add Failed (Dark)" width="250"/>  
   <img src="assets/screenshots/list_of_notes_dark.png" alt="Notes List (Dark)" width="250"/>  
+  <img src="assets/screenshots/search_note_dark.png" alt="Search Note (Dark)" width="250"/>  
+  <img src="assets/screenshots/search_in_notes_dark.png" alt="Search In Notes (Dark)" width="250"/>  
   <img src="assets/screenshots/edit_note_dark.png" alt="Edit Note (Dark)" width="250"/>  
   <img src="assets/screenshots/delete_note_dark.png" alt="Delete Note (Dark)" width="250"/>  
 </p>  
@@ -29,7 +31,9 @@ A modern and functional notes application built with Flutter. It allows users to
   <img src="assets/screenshots/no_notes_yet_light.png" alt="No Notes Yet (Light)" width="250"/>  
   <img src="assets/screenshots/note_add_success_light.png" alt="Note Added Successfully (Light)" width="250"/>  
   <img src="assets/screenshots/note_add_failure_light.png" alt="Note Add Failed (Light)" width="250"/>  
-  <img src="assets/screenshots/list_of_notes_light.png" alt="Notes List (Light)" width="250"/>  
+  <img src="assets/screenshots/list_of_notes_light.png" alt="Notes List (Light)" width="250"/>
+  <img src="assets/screenshots/search_note_light.png" alt="Search Note (Dark)" width="250"/>  
+  <img src="assets/screenshots/search_in_notes_light.png" alt="Search In Notes (Dark)" width="250"/>   
   <img src="assets/screenshots/edit_note_light.png" alt="Edit Note (Light)" width="250"/>  
   <img src="assets/screenshots/delete_note_light.png" alt="Delete Note (Light)" width="250"/>  
 </p>  
