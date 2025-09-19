@@ -8,31 +8,25 @@ class NotesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NotesCubit, NotesState>(
-      builder: (context, state) {
-        if (state is NotesFetchSuccess) {
-          final notes = state.notes;
-          if (notes.isEmpty) {
-            return EmptyNotesBody();
-          } else if (notes.isEmpty == false) {
-            return Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.only(top: 13),
-                itemBuilder: (context, index) {
-                  return CustomNoteItem(note: notes[index]);
-                },
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: notes.length,
-              ),
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return BlocBuilder<NotesCubit, NotesState>(builder: (context, state) {
+      if (state is NotesFetchSuccess) {
+        final notes = state.notes;
+        if (notes.isEmpty) {
+          return EmptyNotesBody();
         }
+        return ListView.builder(
+          padding: const EdgeInsets.only(top: 13),
+          itemBuilder: (context, index) {
+            return CustomNoteItem(note: notes[index]);
+          },
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: notes.length,
+        );
+      } else {
         return const Center(child: CircularProgressIndicator());
-      },
-    );
+      }
+    });
   }
 }
 
